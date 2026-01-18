@@ -1,6 +1,13 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  padding: .65rem 1.1rem;
+  margin: 0.85rem 1rem 0;
+  border-radius: 1rem;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(10px);
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +15,26 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 46px;
+  border-radius: 10px;
+}
+
+.navbar-lewagon .nav-link {
+  color: darken($body-color, 8%);
+  font-weight: 600;
+  padding: .5rem .75rem;
+  transition: color .12s ease;
+  &:hover { color: $primary; }
+}
+
+.navbar-lewagon .navbar-toggler {
+  border: none;
+}
+
+@media (max-width: 767px) {
+  .navbar-lewagon {
+    margin: 0.75rem 0.75rem 0;
+    padding: .55rem .75rem;
+  }
+  .navbar-lewagon .nav-link { padding: .5rem 0.5rem; }
 }

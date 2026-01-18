@@ -10,3 +10,27 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+/* ===== Auth (Devise) ===== */
+.auth-body {
+  min-height: 100vh;
+  background:
+    radial-gradient(900px circle at 12% 10%, rgba(31, 92, 255, 0.22), transparent 60%),
+    radial-gradient(700px circle at 90% 0%, rgba(255, 209, 102, 0.28), transparent 55%),
+    #f8f5f0;
+}
+
+.auth-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 24px 12px;
+}
+
+.auth-card {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: blur(10px);
+}

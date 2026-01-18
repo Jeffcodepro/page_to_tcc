@@ -1,0 +1,120 @@
+
+<div class="container mt-3">
+  <div class="d-flex justify-content-between align-items-end mb-3 page-header">
+    <div>
+      <h1 class="h4 mb-1">Vendas</h1>
+      <p class="page-subtitle mb-0">Dados demonstrativos (fictícios) com classificação de vendas.</p>
+    </div>
+
+    <%= form_with url: financeiro_path, method: :get, local: true, class: "filters-bar d-flex flex-wrap gap-2 align-items-center" do %>
+      <%= text_field_tag :q, params[:q], class: "form-control form-control-sm", placeholder: "Buscar pedido/cliente/produto..." %>
+
+      <%= select_tag :status,
+        options_for_select(["", "Pago", "Pendente", "Cancelado"], params[:status]),
+        class: "form-select form-select-sm" %>
+
+      <%= select_tag :canal,
+        options_for_select(["", "Loja Física", "E-commerce", "Atacado", "Marketplace"], params[:canal]),
+        class: "form-select form-select-sm" %>
+
+      <%= select_tag :classificacao,
+        options_for_select(["", "B2B", "B2C"], params[:classificacao]),
+        class: "form-select form-select-sm" %>
+
+      <%= submit_tag "Filtrar", class: "btn btn-sm btn-outline-secondary" %>
+      <%= link_to "Limpar", financeiro_path, class: "btn btn-sm btn-outline-light border" %>
+    <% end %>
+  </div>
+
+  <div class="row g-2 mb-3">
+    <div class="col-6 col-lg-2 kpi-col">
+      <div class="kpi-card">
+        <div class="text-muted small">Pedidos</div>
+        <div class="fw-semibold"><%= @kpis[:pedidos] %></div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-2 kpi-col">
+      <div class="kpi-card">
+        <div class="text-muted small">Pagos</div>
+        <div class="fw-semibold"><%= @kpis[:pagas] %></div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-3 kpi-col">
+      <div class="kpi-card">
+        <div class="text-muted small">Receita (paga)</div>
+        <div class="fw-semibold"><%= number_to_currency(@kpis[:receita], unit: "R$ ", separator: ",", delimiter: ".") %></div>
+      </div>
+    </div>
+    <div class="col-6 col-lg-2 kpi-col">
+      <div class="kpi-card">
+        <div class="text-muted small">Itens (pagos)</div>
+        <div class="fw-semibold"><%= @kpis[:itens] %></div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3 kpi-col">
+      <div class="kpi-card">
+        <div class="text-muted small">Ticket médio (pago)</div>
+        <div class="fw-semibold"><%= number_to_currency(@kpis[:ticket_medio], unit: "R$ ", separator: ",", delimiter: ".") %></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive data-table">
+    <table class="table table-sm table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th>Data</th>
+          <th>Pedido</th>
+          <th>Cliente</th>
+          <th>Canal</th>
+          <th>Classif.</th>
+          <th>Origem</th>
+          <th>Categoria</th>
+          <th>Produto</th>
+          <th class="text-end">Qtd</th>
+          <th class="text-end">Bruto</th>
+          <th class="text-end">Desc.</th>
+          <th class="text-end">Líquido</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @vendas.each do |v| %>
+          <tr>
+            <td><%= v[:data].strftime("%d/%m/%Y") %></td>
+            <td><%= v[:pedido] %></td>
+            <td><%= v[:cliente] %></td>
+            <td><%= v[:canal] %></td>
+            <td><%= v[:classificacao] %></td>
+            <td><%= v[:origem] %></td>
+            <td><%= v[:categoria] %></td>
+            <td><%= v[:produto] %></td>
+
+            <td class="text-end"><%= v[:qtd] %></td>
+            <td class="text-end"><%= number_to_currency(v[:bruto], unit: "R$ ", separator: ",", delimiter: ".") %></td>
+            <td class="text-end text-muted"><%= number_to_currency(v[:desconto], unit: "R$ ", separator: ",", delimiter: ".") %></td>
+            <td class="text-end fw-semibold"><%= number_to_currency(v[:liquido], unit: "R$ ", separator: ",", delimiter: ".") %></td>
+
+            <td>
+              <% badge =
+                case v[:status]
+                when "Pago" then "bg-success"
+                when "Pendente" then "bg-warning text-dark"
+                else "bg-secondary"
+                end
+              %>
+              <span class="badge <%= badge %>"><%= v[:status] %></span>
+            </td>
+          </tr>
+        <% end %>
+
+        <% if @vendas.empty? %>
+          <tr>
+            <td colspan="13" class="text-center text-muted py-4">Nenhum resultado.</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

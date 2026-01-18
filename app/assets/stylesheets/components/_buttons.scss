@@ -1,0 +1,49 @@
+// Buttons: variantes de botão com estilo profissional
+// Usa variáveis definidas em config/_colors.scss e bootstrap overrides
+
+.btn-brand {
+  @extend .btn;
+  background-color: $primary;
+  color: #fff;
+  border: none;
+  border-radius: .5rem;
+  padding: .6rem 1rem;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(13,110,253,0.12);
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  &:hover {
+    background-color: darken($primary, 6%);
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: translateY(0);
+    box-shadow: none;
+  }
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: $body-color;
+  border-radius: .5rem;
+  padding: .5rem .9rem;
+  transition: background-color .12s ease, border-color .12s ease;
+  &:hover { background: rgba(0,0,0,0.03); }
+}
+
+.btn-dark {
+  background: $body-color;
+  border: none;
+  box-shadow: 0 12px 24px rgba(21, 26, 35, 0.18);
+  transition: transform .12s ease, box-shadow .12s ease, background-color .12s ease;
+  &:hover {
+    background: darken($body-color, 6%);
+    transform: translateY(-1px);
+  }
+}
+
+.btn-outline-secondary,
+.btn-outline-light {
+  border-color: rgba(21, 26, 35, 0.18);
+  color: $body-color;
+}

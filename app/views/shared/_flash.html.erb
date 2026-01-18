@@ -1,0 +1,35 @@
+<%# Partial para toasts SweetAlert-like %>
+<div class="alert-toast-wrap" aria-live="polite" aria-atomic="true">
+  <% flash.each do |type, message| %>
+    <%# Mapear tipos Rails para variantes de estilo %>
+    <% variant = case type.to_sym
+       when :notice then 'notice'
+       when :alert then 'alert'
+       when :success then 'success'
+       when :error then 'alert'
+       when :warning then 'warning'
+       else 'info' end %>
+
+    <div data-controller="flash" data-flash-timeout-value="6000" class="alert-toast alert-toast--<%= variant %>" role="status">
+      <div class="alert-toast--icon" aria-hidden="true">
+        <%# Pequenos ícones por tipo (SVG inline) %>
+        <% if variant == 'success' %>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <% elsif variant == 'alert' %>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 9v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 17h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="none" fill="currentColor"/></svg>
+        <% elsif variant == 'warning' %>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" stroke="currentColor" stroke-width="0" fill="currentColor"/></svg>
+        <% else %>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 8v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 16h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <% end %>
+      </div>
+
+      <div class="alert-toast__body">
+        <p class="alert-toast__title"><%= variant.titleize %></p>
+        <p class="alert-toast__message"><%= message %></p>
+      </div>
+
+      <button type="button" class="btn btn-ghost" aria-label="Fechar" data-action="click->flash#dismiss" style="margin-left:8px">×</button>
+    </div>
+  <% end %>
+</div>

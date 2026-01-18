@@ -1,0 +1,54 @@
+// Formulários: controles refinados para melhor usabilidade
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: .35rem;
+  font-weight: 600;
+  color: darken($body-color, 18%);
+}
+
+.form-control {
+  border-radius: .5rem;
+  border: 1px solid rgba(15,15,15,0.08);
+  padding: .75rem .9rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: none;
+  transition: box-shadow .12s ease, border-color .12s ease;
+  &:focus {
+    outline: none;
+    border-color: $primary;
+    box-shadow: 0 0 0 .18rem rgba($primary, .12);
+  }
+}
+
+.form-select {
+  border-radius: .5rem;
+  border: 1px solid rgba(15,15,15,0.08);
+  padding: .65rem .9rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  transition: box-shadow .12s ease, border-color .12s ease;
+  &:focus {
+    border-color: $primary;
+    box-shadow: 0 0 0 .18rem rgba($primary, .12);
+  }
+}
+
+.form-control-sm,
+.form-select-sm {
+  padding: .45rem .7rem;
+  font-size: .875rem;
+}
+
+.form-text {
+  color: darken($body-color, 24%);
+  font-size: .9rem;
+}
+
+.field-with-error {
+  border-color: $danger !important;
+  box-shadow: 0 0 0 .12rem rgba($red, .08);
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PageToTcc</title>
+    <title>Demonstration Page</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +10,11 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="<%= devise_controller? ? 'auth-body' : 'app-body' %>">
+    <%= render "shared/navbar" if user_signed_in? %>
+
+    <main class="<%= devise_controller? ? 'auth-wrapper' : 'app-container' %>">
+      <%= yield %>
+    </main>
   </body>
 </html>

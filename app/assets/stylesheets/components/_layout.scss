@@ -1,0 +1,111 @@
+:root {
+  --surface: #ffffff;
+  --surface-muted: #f2f4f7;
+  --border-subtle: rgba(21, 26, 35, 0.08);
+  --shadow-soft: 0 22px 55px rgba(12, 17, 29, 0.12);
+  --shadow-card: 0 16px 40px rgba(12, 17, 29, 0.14);
+}
+
+.app-body {
+  min-height: 100vh;
+  background:
+    radial-gradient(1200px circle at 8% -12%, rgba(31, 92, 255, 0.18), transparent 60%),
+    radial-gradient(900px circle at 95% 6%, rgba(255, 209, 102, 0.28), transparent 55%),
+    $body-bg;
+}
+
+.app-container {
+  min-height: calc(100vh - 72px);
+  padding: 2.25rem 1.5rem 3rem;
+}
+
+.page-header .h4,
+.page-header h1 {
+  letter-spacing: -0.02em;
+}
+
+.page-subtitle {
+  color: rgba(21, 26, 35, 0.62);
+}
+
+.filters-bar {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  padding: 0.5rem 0.75rem;
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(8px);
+}
+
+.kpi-col {
+  animation: fade-in-up 0.6s ease both;
+}
+
+.kpi-col:nth-child(1) { animation-delay: 0.05s; }
+.kpi-col:nth-child(2) { animation-delay: 0.1s; }
+.kpi-col:nth-child(3) { animation-delay: 0.15s; }
+.kpi-col:nth-child(4) { animation-delay: 0.2s; }
+.kpi-col:nth-child(5) { animation-delay: 0.25s; }
+
+.kpi-card {
+  background: linear-gradient(135deg, #ffffff, #f7f7fb);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.kpi-card .text-muted {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.kpi-card .fw-semibold {
+  font-size: 1.1rem;
+}
+
+.data-table {
+  border-radius: 1rem;
+  border: 1px solid var(--border-subtle);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.data-table .table {
+  margin-bottom: 0;
+}
+
+.data-table thead th {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: rgba(21, 26, 35, 0.6);
+}
+
+.data-table tbody tr:hover {
+  background: rgba(31, 92, 255, 0.04);
+}
+
+.badge {
+  border-radius: 999px;
+  padding: 0.35em 0.7em;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.page-header,
+.data-table {
+  animation: fade-in-up 0.6s ease both;
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom">
+  <div class="container-fluid">
+    <%= link_to "Painel", authenticated_root_path, class: "navbar-brand" %>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <%= link_to "Financeiro", financeiro_path,
+            class: "nav-link #{'active' if current_page?(financeiro_path)}",
+            "aria-current": (current_page?(financeiro_path) ? "page" : nil) %>
+
+        <%= link_to "Configurações", configuracoes_path,
+            class: "nav-link #{'active' if current_page?(configuracoes_path)}",
+            "aria-current": (current_page?(configuracoes_path) ? "page" : nil) %>
+
+        <%= link_to "Relatórios", relatorios_path,
+            class: "nav-link #{'active' if current_page?(relatorios_path)}",
+            "aria-current": (current_page?(relatorios_path) ? "page" : nil) %>
+      </div>
+
+      <div class="ms-auto d-flex align-items-center gap-2">
+        <span class="navbar-text small text-muted"><%= current_user.email %></span>
+
+        <%= button_to "Sair",
+            destroy_user_session_path,
+            method: :delete,
+            class: "btn btn-outline-secondary btn-sm",
+            form: { class: "d-inline" } %>
+      </div>
+    </div>
+  </div>
+</nav>

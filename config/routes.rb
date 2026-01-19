@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'relatorios/index'
-  get 'configuracoes/index'
-  get 'financeiros/index'
   devise_for :users
 
 
